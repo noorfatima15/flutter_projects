@@ -1,6 +1,7 @@
+import 'package:expense_tracker/services/expense_services.dart';
 import 'package:expense_tracker/views/circular_graph.dart';
 import 'package:expense_tracker/views/entriespage.dart';
-import 'package:expense_tracker/widgets/list_containers.dart';
+
 import 'package:expense_tracker/widgets/list_tile.dart';
 import 'package:expense_tracker/widgets/listview.dart';
 
@@ -10,7 +11,7 @@ class HomeScreen extends StatefulWidget {
   int currentindex = 0;
 
   HomeScreen({Key? key}) : super(key: key);
-
+  Expense_Services sevices = Expense_Services();
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -114,10 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
-                      ListDetails(
-                        dateOfEnry: 'Aug 19',
-                        listcontainers: [List_Tile()],
-                      )
+                      ListDetails(dateOfEnry: 'Aug 19'),
                     ],
                   ),
                 ),

@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/models/expense_income_details.dart';
 
 class PieChartdata {
   double expenseValue = 0.0;

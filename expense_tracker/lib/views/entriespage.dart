@@ -1,16 +1,21 @@
-import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/models/expense_income_details.dart';
+import 'package:expense_tracker/services/expense_services.dart';
 import 'package:expense_tracker/views/home_screen.dart';
-import 'package:expense_tracker/widgets/list_containers.dart';
-import 'package:expense_tracker/widgets/list_tile.dart';
+
 import 'package:flutter/material.dart';
 
 class AddEntriesOfExpense extends StatefulWidget {
   String dropdownValue = 'Expense';
 
   AddEntriesOfExpense({Key? key}) : super(key: key);
-  Expense_Income_Details details = Expense_Income_Details();
-  List_Tile list_tile = List_Tile();
-  ListContainers listContainers = ListContainers(header_text: 'abcd');
+  // Expense_Income_Details details = Expense_Income_Details(
+  //   tile_text: '', tile_price: '',
+  //
+  //   // amount: []
+  // );
+  // List_Tile list_tile = List_Tile();
+  Expense_Services services = Expense_Services();
+
   TextEditingController activity_controller = TextEditingController();
   TextEditingController amount_controller = TextEditingController();
 
@@ -85,9 +90,10 @@ class _AddEntriesOfExpenseState extends State<AddEntriesOfExpense> {
                   child: TextFormField(
                     controller: widget.activity_controller,
                     autofocus: true,
+
                     // initialValue: List_Tile().tile_text,
                     onChanged: (value) {
-                      widget.details.tile_text = value;
+                      widget.services.tile_text = value;
                     },
                     decoration: const InputDecoration(
                         hoverColor: Colors.white,
@@ -120,8 +126,12 @@ class _AddEntriesOfExpenseState extends State<AddEntriesOfExpense> {
                   child: TextFormField(
                     controller: widget.amount_controller,
                     //onChanged: (value) => widget.activity_controller,
+                    onChanged: (value) {
+                      widget.services.tile_price = value;
+                    },
 
                     autofocus: false,
+
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: true),
                     decoration: const InputDecoration(
@@ -155,8 +165,30 @@ class _AddEntriesOfExpenseState extends State<AddEntriesOfExpense> {
                 ),
                 onPressed: () {
                   setState(() {
-                    widget.details.tile_text;
-                    print(widget.details.tile_text);
+                    // widget.services.tile_text;
+                    // widget.services.tile_price;
+                    // widget.services.details.add(Expense_Income_Details(
+                    //     tile_text: widget.services.tile_text,
+
+                    //     tile_price: widget.services.tile_price));
+                    print(widget.services.tile_price);
+                    print(widget.services.tile_text);
+                    widget.services.details.addAll([]);
+                    print(widget.services.details);
+
+                    widget.services.addDetails();
+
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => List_Tile(
+                    //         expense_income_details: Expense_Income_Details(
+                    //             tile_text: widget.services.tile_text,
+                    //             tile_price: widget.services.tile_price,
+                    //             amount: widget.services.amount))));
+                    //
+                    // Navigator.of(context).pop(
+                    //     MaterialPageRoute(builder: (context) => HomeScreen()));
+
+                    //   print(widget.details.tile_price);
                   });
                 },
                 style: ButtonStyle(

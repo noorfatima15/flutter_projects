@@ -1,11 +1,13 @@
-import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/models/expense_income_details.dart';
+import 'package:expense_tracker/services/expense_services.dart';
 import 'package:expense_tracker/services/piechart_data.dart';
+import 'package:expense_tracker/widgets/list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class Piechart extends StatefulWidget {
   PieChartdata piechartdata = PieChartdata();
-
+  Expense_Services services = Expense_Services();
   int choiceIndex = 0;
 
   Piechart({Key? key}) : super(key: key);
@@ -21,7 +23,10 @@ class _PiechartState extends State<Piechart> {
         height: 120,
         child: Center(
           child: PieChart(
-            dataMap: Expense_Income_Details().resultOfPieChart(100, 100),
+            dataMap: Expense_Income_Details(
+                tile_price: widget.services.tile_price,
+                tile_text: widget.services.tile_text,
+                amount: []).resultOfPieChart(100, 500),
 
             // colorList: widget.colorlist,
 

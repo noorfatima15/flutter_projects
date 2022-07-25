@@ -1,9 +1,21 @@
-class Expense_Services {
-  final String image_url;
-  final String tile_text;
-  final String tile_price;
-  final String header_text;
+import 'package:expense_tracker/models/expense_income_details.dart';
 
-  Expense_Services(
-      this.image_url, this.tile_text, this.tile_price, this.header_text);
+class Expense_Services {
+  List<Expense_Income_Details> details = [];
+  String tile_text = '';
+  String tile_price = '';
+  List<String> amount = [];
+  void addAmount() {
+    amount.add(tile_price);
+  }
+
+  void addDetails() {
+    Expense_Income_Details expense_income_details = Expense_Income_Details(
+        tile_text: tile_text, tile_price: tile_price, amount: amount);
+    details.add(expense_income_details);
+    print(details.first.amount);
+    print(expense_income_details.amount);
+    tile_price = '';
+    tile_text = '';
+  }
 }
