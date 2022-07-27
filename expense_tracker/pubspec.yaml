@@ -38,6 +38,7 @@ dependencies:
   charts_flutter: ^0.12.0
   d_chart: ^0.0.4
   syncfusion_flutter_charts: ^20.2.39
+  kt_dart: ^0.10.0
 
 dev_dependencies:
   flutter_test:

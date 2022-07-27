@@ -24,9 +24,10 @@ class _PiechartState extends State<Piechart> {
         child: Center(
           child: PieChart(
             dataMap: Expense_Income_Details(
-                tile_price: widget.services.tile_price,
-                tile_text: widget.services.tile_text,
-                amount: []).resultOfPieChart(100, 500),
+              tile_price: widget.services.tile_price,
+              tile_text: widget.services.tile_text,
+              // amount: []
+            ).resultOfPieChart(100, 500),
 
             // colorList: widget.colorlist,
 

@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 
 class AddEntriesOfExpense extends StatefulWidget {
   String dropdownValue = 'Expense';
+  final List<Expense_Income_Details> details;
+  AddEntriesOfExpense({required this.details});
 
-  AddEntriesOfExpense({Key? key}) : super(key: key);
   // Expense_Income_Details details = Expense_Income_Details(
   //   tile_text: '', tile_price: '',
   //
   //   // amount: []
   // );
   // List_Tile list_tile = List_Tile();
+
   Expense_Services services = Expense_Services();
 
   TextEditingController activity_controller = TextEditingController();
@@ -164,20 +166,25 @@ class _AddEntriesOfExpenseState extends State<AddEntriesOfExpense> {
                   style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () {
+                  widget.details.add(Expense_Income_Details(
+                      tile_text: widget.activity_controller.text,
+                      tile_price: widget.amount_controller.text));
+                  print(widget.details.length.toString());
+
                   setState(() {
+                    // widget.services.addAmount();
                     // widget.services.tile_text;
                     // widget.services.tile_price;
                     // widget.services.details.add(Expense_Income_Details(
                     //     tile_text: widget.services.tile_text,
-
+                    //
                     //     tile_price: widget.services.tile_price));
-                    print(widget.services.tile_price);
-                    print(widget.services.tile_text);
-                    widget.services.details.addAll([]);
-                    print(widget.services.details);
-
-                    widget.services.addDetails();
-
+                    // print(widget.services.tile_price);
+                    // print(widget.services.tile_text);
+                    // //widget.services.details.addAll([]);
+                    //
+                    // widget.services.addDetails();
+                    // print(widget.services.details);
                     // Navigator.of(context).push(MaterialPageRoute(
                     //     builder: (context) => List_Tile(
                     //         expense_income_details: Expense_Income_Details(
@@ -204,7 +211,9 @@ class _AddEntriesOfExpenseState extends State<AddEntriesOfExpense> {
                   style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () {
+                  // print(widget.services.details.length.toString());
                   _navigateToNextScreen(context);
+                  // _navigateToNextScreen(context);
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.grey),
@@ -212,13 +221,30 @@ class _AddEntriesOfExpenseState extends State<AddEntriesOfExpense> {
                     textStyle:
                         MaterialStateProperty.all(TextStyle(fontSize: 15))),
               ),
+              // ElevatedButton(
+              //   child: Text(
+              //     'Back',
+              //     style: TextStyle(color: Colors.black),
+              //   ),
+              //   onPressed: () {
+              //     // print(widget.services.details.length.toString());
+              //     _navigateToNextScreen(context);
+              //   },
+              //   style: ButtonStyle(
+              //       backgroundColor: MaterialStateProperty.all(Colors.grey),
+              //       padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+              //       textStyle:
+              //           MaterialStateProperty.all(TextStyle(fontSize: 15))),
+              // ),
             ],
           ),
         ));
   }
 
   void _navigateToNextScreen(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => HomeScreen(
+              details: widget.details,
+            )));
   }
 }

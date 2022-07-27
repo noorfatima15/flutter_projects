@@ -9,9 +9,12 @@ import '../models/expense_income_details.dart';
 class ListDetails extends StatefulWidget {
   String dateOfEnry;
   // List<List_Tile> listcontainers;
-  ListDetails({Key? key, required this.dateOfEnry}) : super(key: key);
-  Expense_Services services = Expense_Services();
-  AddEntriesOfExpense entries = AddEntriesOfExpense();
+
+  final List<Expense_Income_Details> details;
+  ListDetails({required this.details, required this.dateOfEnry});
+
+  // Expense_Services services = Expense_Services();
+  // AddEntriesOfExpense entries = AddEntriesOfExpense(details: [],);
   @override
   State<ListDetails> createState() => _ListDetailsState();
 }
@@ -34,10 +37,9 @@ class _ListDetailsState extends State<ListDetails> {
           width: 380,
           child: ListView.builder(
             physics: ScrollPhysics(parent: null),
-            itemCount: widget.services.details.length,
+            itemCount: widget.details.length,
             itemBuilder: (context, index) {
-              Expense_Income_Details final_details =
-                  widget.services.details[index];
+              Expense_Income_Details final_details = widget.details[index];
               //AddEntriesOfExpense().activity_controller;
               //AddEntriesOfExpense().amount_controller;
               return Column(

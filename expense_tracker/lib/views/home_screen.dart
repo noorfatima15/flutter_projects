@@ -7,10 +7,14 @@ import 'package:expense_tracker/widgets/listview.dart';
 
 import 'package:flutter/material.dart';
 
+import '../models/expense_income_details.dart';
+
 class HomeScreen extends StatefulWidget {
   int currentindex = 0;
 
-  HomeScreen({Key? key}) : super(key: key);
+  final List<Expense_Income_Details> details;
+  HomeScreen({required this.details});
+
   Expense_Services sevices = Expense_Services();
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -115,7 +119,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
-                      ListDetails(dateOfEnry: 'Aug 19'),
+                      ListDetails(
+                        dateOfEnry: 'Aug 19',
+                        details: widget.details,
+                      ),
+                      // ElevatedButton(
+                      //   child: Text(
+                      //     'Back',
+                      //     style: TextStyle(color: Colors.black),
+                      //   ),
+                      //   onPressed: () {
+                      //     print(widget.details.length.toString());
+                      //     // _navigateToNextScreen(context);
+                      //   },
+                      //   style: ButtonStyle(
+                      //       backgroundColor:
+                      //           MaterialStateProperty.all(Colors.grey),
+                      //       padding:
+                      //           MaterialStateProperty.all(EdgeInsets.all(10)),
+                      //       textStyle: MaterialStateProperty.all(
+                      //           TextStyle(fontSize: 15))),
+                      // ),
                     ],
                   ),
                 ),
@@ -175,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _navigateToEntriesPage(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => AddEntriesOfExpense()));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => AddEntriesOfExpense(details: widget.details)));
   }
 }
