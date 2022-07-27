@@ -18,8 +18,8 @@ class ResultScreen extends StatelessWidget {
         children: [
           SizedBox(height: 250),
           Center(
-            child: Obx(() => Text(
-                'Here is the Result = ${counterController.count.toString()}')),
+            child: Obx(
+                () => Text('Here is the Result = ${counterController.count}')),
           ),
           SizedBox(height: 40),
           ElevatedButton(
